@@ -22,7 +22,7 @@
 
 
 
-          <b-button class="mt-2" squared type="submit" @click="say(name)">Enter the chat as: "{{ form.name }}"</b-button>
+          <b-button class="mt-2" squared type="submit" @click="LogIn(this.form.name)">Enter the chat as: "{{ form.name }}"</b-button>
     </div>
 </div>
 </template>
@@ -30,6 +30,8 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
+import axios from "axios";
+import url from 'vuelidate/lib/validators/url';
 
 
   export default {
@@ -38,7 +40,7 @@ import { required, minLength, maxLength } from "vuelidate/lib/validators";
       return {
         text: '',
         form:{
-            name: null
+            name: ""
         }
       }
     },
@@ -46,12 +48,34 @@ import { required, minLength, maxLength } from "vuelidate/lib/validators";
   say(message) {
      let AlertText = 'henlo '
       AlertText += this.form.name
-    alert(AlertText)
+      alert(AlertText)
+    this.$router.push('/ChatView');
+
   },
   validateState(name){
       const { $dirty, $error } = this.$v.form[name];
       return $dirty ? !$error : null;
-  }
+  }, // TU W DÓŁ XD
+  LogIn(pass){
+    let urlname = "http://user/users/" + this.$v.form[name];
+    let result = axios.get(urlname)
+    .then((result) => {
+      if (result == "NotFound")
+      {
+        let result2 = axios.post(urlname)
+        .then((result2) =>{
+          Name:this.$v.form[name],
+          this.$router.push('/ChatView');
+        })
+        .catch((err) =>{
+          alert(err);
+        })
+      }
+    })
+    .catch((err) =>{
+      alert(err);
+    })
+  } // TU JUŻ NIE JAK COŚ
 },
 validations: {
     form:{

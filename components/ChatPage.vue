@@ -71,8 +71,8 @@ export default{
         .then(()=>console.log("connected to the hub"))
         .catch(err => console.log(err));
 
-        this.hubConnection.on("ReceiveMessage",(usr, avatar,msg) =>{
-            this.appendMsgToChat(usr,avatar,msg);
+        this.hubConnection.on("ReceiveMessage",(usr,msg) =>{
+            this.appendMsgToChat(usr,msg);
         });
             this.hubConnection.on("ReceiveNotification", msg => {
                 this.appendAlertToChat(msg);
@@ -81,7 +81,7 @@ export default{
     methods: {
         send () {
                 
-            this.hubConnection.invoke("SendMessage", this.message);
+            this.hubConnection.invoke("SendMessage", "poopster420", this.message);
             this.user = "poopster420";
             this.message = '';
         }
