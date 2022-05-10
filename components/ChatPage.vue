@@ -55,7 +55,7 @@ const signalR = require('@microsoft/signalr');
 export default{
     data(){
         return{
-            user: {},
+            user: {},rq3qr
             hubConnection: {},
             chat: '',
             message: ''       
@@ -84,6 +84,9 @@ export default{
             this.hubConnection.invoke("SendMessage", "poopster420", this.message);
             this.user = "poopster420";
             this.message = '';
+        },
+        appendMsgToChat(){
+            this.chat += this.chat;
         }
     }
 
