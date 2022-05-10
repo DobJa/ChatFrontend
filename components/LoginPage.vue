@@ -1,7 +1,7 @@
 <template>
     <div>
   <div class="jumbotron text-center">
-     <h1>Whale cum to the chat app</h1>
+     <h1>Welcome to the chat app</h1>
      </div>
     <div class="w-25 pb-1 mx-auto">
         <b-form-group id="example-input-group-1" label="Name" label-for="example-input-1">
@@ -22,7 +22,7 @@
 
 
 
-          <b-button class="mt-2" squared type="submit" @click="LogIn(this.form.name)">Enter the chat as: "{{ form.name }}"</b-button>
+          <b-button class="mt-2" squared type="submit" @click="LogIn(form.name)">Enter the chat as: "{{ form.name }}"</b-button>
     </div>
 </div>
 </template>
