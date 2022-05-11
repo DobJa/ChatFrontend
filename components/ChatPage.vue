@@ -71,8 +71,8 @@ export default{
         .then(()=>console.log("connected to the hub"))
         .catch(err => console.log(err));
 
-        this.hubConnection.on("messageReceived",(msg) =>{
-            this.appendMsgToChat("sampleUser",msg);
+        this.hubConnection.on("messageReceived",(user,msg) =>{
+            this.appendMsgToChat(user,msg);
         });
             this.hubConnection.on("ReceiveNotification", msg => {
                 this.appendAlertToChat(msg);
@@ -86,7 +86,8 @@ export default{
             this.message = '';
         },
         appendMsgToChat(user,msg){
-                this.chat = this.user + this.msg + this.chat;
+                const htmlMsg = '<p class="msg">[' + usr + '] ' + msg + '</p>';
+                this.chat = htmlMsg + this.chat;
         }
     } 
 
