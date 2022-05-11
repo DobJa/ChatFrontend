@@ -58,13 +58,13 @@ import url from 'vuelidate/lib/validators/url';
   }, // TU W DÓŁ XD
   LogIn(pass){
     let url = "http://localhost:8081/users/";
-    let result = axios.get(url + this.$v.form[name])
+    let result = axios.get(url + this.name)
     .then((result) => {
       if (result == "NotFound")
       {
         let result2 = axios.post(url)
         .then((result2) =>{
-          Name:this.$v.form[name],
+          Name:this.name,
           this.$router.push('/ChatView');
         })
         .catch((err) =>{
