@@ -73,7 +73,12 @@ import url from 'vuelidate/lib/validators/url';
       }
     })
     .catch((err) =>{
-      alert(err);
+      if (err == "404")
+      {
+        console.log("poopoooCODE");
+      }
+                Name:this.form.name,
+          this.$router.push('/ChatView');
     })
   } // TU JUŻ NIE JAK COŚ
 },
