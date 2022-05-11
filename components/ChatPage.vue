@@ -86,7 +86,7 @@ export default{
             this.message = '';
         },
         appendMsgToChat(user,msg){
-                const htmlMsg = '<p class="msg">[' + usr + '] ' + msg + '</p>';
+                const htmlMsg = '<p class="msg">[' + user + '] ' + msg + '</p>';
                 this.chat = htmlMsg + this.chat;
         }
     } 
