@@ -60,21 +60,19 @@ import url from 'vuelidate/lib/validators/url';
     let url = "http://localhost:8081/users/";
     let result = axios.get(url + this.form.name)
     .then((result) => {
-      if (result == "NotFound")
-      {
-        let result2 = axios.post(url)
+    this.$cookies.set("UserName", this.form.name);
+    this.$router.push('/ChatView');
+    })
+    .catch((err) =>{
+              let result2 = axios.post(url)
         .then((result2) =>{
-          Name:this.form.name,
+          this.$cookies.set("UserName", this.form.name);
           this.$router.push('/ChatView');
         })
         .catch((err) =>{
           alert(err);
         })
-      }
-    })
-    .catch((err) =>{
-    this.$cookies.set("UserName", this.form.name);
-    this.$router.push('/ChatView');
+
     })
   }, // TU JUŻ NIE JAK COŚ
   // dummy(name)
