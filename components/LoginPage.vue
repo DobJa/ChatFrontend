@@ -22,7 +22,7 @@
 
 
 
-          <b-button class="mt-2" squared type="submit" @click="LogIn(form.name)">Enter the chat as: "{{ form.name }}"</b-button>
+          <b-button class="mt-2" squared type="submit" @click="dummy(form.name)">Enter the chat as: "{{ form.name }}"</b-button>
     </div>
 </div>
 </template>
@@ -73,14 +73,16 @@ import url from 'vuelidate/lib/validators/url';
       }
     })
     .catch((err) =>{
-      if (err == "404")
-      {
-        console.log("poopoooCODE");
-      }
-                Name:this.form.name,
-          this.$router.push('/ChatView');
+    this.$cookies.set("UserName", this.form.name);
+    this.$router.push('/ChatView');
     })
-  } // TU JUŻ NIE JAK COŚ
+  }, // TU JUŻ NIE JAK COŚ
+  // dummy(name)
+  // {
+  //   this.$cookies.set("UserName", this.form.name);
+  //   this.$router.push('/ChatView');
+
+  // }
 },
 validations: {
     form:{

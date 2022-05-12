@@ -13,7 +13,6 @@
         </div>
     </div>
 
-
 </div>
 </template>
 
@@ -33,7 +32,7 @@ export default{
              }
     },
     created(){
-        this.user = "urmom";
+        this.user = this.$cookies.get("UserName");
 
         this.hubConnection = chat.createHub();
 
@@ -52,8 +51,7 @@ export default{
     methods: {
         send () {
                 
-            this.hubConnection.invoke("SendMessage", "poopster420", this.message);
-            this.user = "poopster420";
+            this.hubConnection.invoke("SendMessage", this.$cookies.get("UserName"), this.message);
             this.message = '';
         },
         appendMsgToChat(user,msg){
