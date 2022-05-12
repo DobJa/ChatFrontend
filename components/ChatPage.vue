@@ -23,7 +23,7 @@
             placeholder="Choose a file or drop it here..."
             drop-placeholder="Drop file here..."
         ></b-form-file>
-              <b-button type="submit" variant="primary">Submit</b-button>
+              <b-button type="submit" variant="primary" @click="send()">Submit</b-button>
   </b-input-group>
   </b-form>
 
