@@ -22,7 +22,7 @@
 
 
 
-          <b-button class="mt-2" squared type="submit" @click="dummy(form.name)">Enter the chat as: "{{ form.name }}"</b-button>
+          <b-button class="mt-2" squared type="submit" @click="LogIn(form.name)">Enter the chat as: "{{ form.name }}"</b-button>
     </div>
 </div>
 </template>
