@@ -73,7 +73,7 @@ export default{
             this.message = '';
         },
         appendMsgToChat(user,msg){
-                const htmlMsg = '<p class="msg">[' + user + '] ' + msg + '</p>';
+                const htmlMsg = '<p class="msg">[' + this.$cookies.get("UserName") + '] ' + msg + '</p>';
                 this.chat = htmlMsg + this.chat;
         }, // prototype of overloaded method of appending a message to the chat
         appendMsgToChat(usr, image, msg) {
