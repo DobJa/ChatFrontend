@@ -69,17 +69,17 @@ export default{
     methods: {
         send() {
             // event.preventDefault()
-            this.hubConnection.invoke("SendMessage", this.message);
+            this.hubConnection.invoke("SendMessage", this.$cookies.get("UserName"), this.message);
             this.message = '';
         },
-        appendMsgToChat(user,msg){
-                const htmlMsg = '<p class="msg">[' + user + '] ' + msg + '</p>';
+            appendMsgToChat(user, msg) {
+                const htmlMsg = '<p class="msg"> [' + user + '] ' + msg + '</p>';
                 this.chat = htmlMsg + this.chat;
-        }, // prototype of overloaded method of appending a message to the chat
-        appendMsgToChat(usr, image, msg) {
-            const htmlMsg = '<p class="msg"> [' + usr + '] '+ <img class="image" src="' + image + '"/> + msg + '</p>';
-            this.chat = htmlMsg + this.chat;
-            }
+                } // prototype of overloaded method of appending a message to the chat
+        // appendMsgToChat(usr, image, msg) {
+        //     const htmlMsg = '<p class="msg"> [' + usr + '] '+ <img class="image" src="' + image + '"/> + msg + '</p>';
+        //     this.chat = htmlMsg + this.chat;
+        //     }
     } 
 
 }
