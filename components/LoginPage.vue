@@ -57,8 +57,8 @@ import url from 'vuelidate/lib/validators/url';
       return $dirty ? !$error : null;
   }, // TU W DÓŁ XD
   LogIn(pass){
-    let url = "http://localhost:8081/users/";
-    let result = axios.get(url + this.form.name)
+    let url = "http://localhost:8081/users";
+    let result = axios.get(url + "/" + this.form.name)
     .then((result) => {
     this.$cookies.set("UserName", this.form.name);
     this.$router.push('/ChatView');
