@@ -69,7 +69,7 @@ export default{
     methods: {
         send() {
             // event.preventDefault()
-            this.hubConnection.invoke("SendMessage", this.$cookies.get("UserName"), this.message);
+            this.hubConnection.invoke("SendMessage", this.message);
             this.message = '';
         },
         appendMsgToChat(user,msg){
