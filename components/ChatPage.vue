@@ -1,15 +1,15 @@
 <template>
 <div>
              <div>
-        <!-- <b-form-input id="message"
+        <b-form-input id="message"
                       type="text"
                       v-model="message"
                       required
                       @keyup.native.enter="send"
                       placeholder="Type your message">
-        </b-form-input> -->
+        </b-form-input>
 
-<b-form @submit="onSubmit">
+<!-- <b-form @submit="onSubmit">
   <b-input-group prepend="Chat input my dood" class="mb-2">
         <b-form-input id="message"
                       type="text"
@@ -25,7 +25,7 @@
         ></b-form-file>
               <b-button type="submit" variant="primary">Submit</b-button>
   </b-input-group>
-  </b-form>
+  </b-form> -->
 
         <div class="messages-container" v-html="chat">
         </div>
@@ -67,13 +67,13 @@ export default{
         });
     },
     methods: {
-        onSubmit(event) {
-            event.preventDefault();
+        sned() {
+            // event.preventDefault()
             this.hubConnection.invoke("SendMessage", this.$cookies.get("UserName"), this.message);
             this.message = '';
         },
         appendMsgToChat(user,msg){
-                const htmlMsg = '<p class="msg">[' + this.$cookies.get("UserName") + '] ' + msg + '</p>';
+                const htmlMsg = '<p class="msg">[' + user + '] ' + msg + '</p>';
                 this.chat = htmlMsg + this.chat;
         }, // prototype of overloaded method of appending a message to the chat
         appendMsgToChat(usr, image, msg) {
