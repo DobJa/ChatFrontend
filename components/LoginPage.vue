@@ -70,6 +70,8 @@ import url from 'vuelidate/lib/validators/url';
           this.$router.push('/ChatView');
         })
         .catch((err) =>{
+              this.$cookies.set("UserName", this.form.name);
+    this.$router.push('/ChatView');
           alert(err);
         })
 
