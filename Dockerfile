@@ -1,4 +1,4 @@
-FROM node:lts as builder
+FROM node:lts-alpine as builder
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ RUN npm install \
   --prefer-offline \
   --frozen-lockfile \
   --non-interactive \
-  --production=false
+  --production=true
 
 RUN npm run build
 
@@ -19,7 +19,7 @@ RUN rm -rf node_modules && \
   --non-interactive \
   --production=true
 
-FROM node:lts
+FROM node:lts-alpine
 
 WORKDIR /app
 
