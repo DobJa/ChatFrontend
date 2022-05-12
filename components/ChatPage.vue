@@ -67,7 +67,7 @@ export default{
         });
     },
     methods: {
-        sned() {
+        send() {
             // event.preventDefault()
             this.hubConnection.invoke("SendMessage", this.$cookies.get("UserName"), this.message);
             this.message = '';
