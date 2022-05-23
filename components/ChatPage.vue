@@ -40,13 +40,18 @@
 <script lang="js">
 import chat from './WebSocket'
 const signalR = require('@microsoft/signalr');
+import Message from '../utils/Message'
+import {snowflakeGenerator} from 'snowflake-id-js';
+
+const generator = snowflakeGenerator(512);
+
 export default{
     data(){
         return{
             user: {},
             hubConnection: {},
             chat: '',
-            message: ''       
+            message: ''
              }
     },
     created(){
@@ -69,7 +74,10 @@ export default{
     methods: {
         send() {
             // event.preventDefault()
-            this.hubConnection.invoke("SendMessage", this.$cookies.get("UserName"), this.message);
+            let msgId = generator.next().value;
+            const mesag = new Message(msgId,1,this.message);
+            this.hubConnection.invoke("SendMessage", this.$cookies.get("UserName"),mesag);
+            console.log(mesag);
             this.message = '';
         },
             appendMsgToChat(user, msg) {
