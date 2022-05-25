@@ -1,7 +1,7 @@
 class Message {
-    constructor(MessId, UserId, text) {
+    constructor(MessId, User, text) {
       this.MessId = MessId;
-      this.UserId = UserId;
+      this.User = User;
       this.text = text;
       this.timestamp = Math.floor(new Date().getTime()/1000.0)
     }

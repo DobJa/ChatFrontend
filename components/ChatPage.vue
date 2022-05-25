@@ -64,8 +64,8 @@ export default{
         .then(()=>console.log("connected to the hub"))
         .catch(err => console.log(err));
 
-        this.hubConnection.on("messageReceived",(user,msg) =>{
-            this.appendMsgToChat(user,msg);
+        this.hubConnection.on("messageReceived",(msg) =>{
+            this.appendMsgToChat(msg);
         });
             this.hubConnection.on("ReceiveNotification", msg => {
                 this.appendAlertToChat(msg);
@@ -75,13 +75,13 @@ export default{
         send() {
             // event.preventDefault()
             let msgId = generator.next().value;
-            const mesag = new Message(msgId,1,this.message);
-            this.hubConnection.invoke("SendMessage", this.$cookies.get("UserName"),mesag);
+            const mesag = new Message(msgId,this.$cookies.get("UserName"),this.message);
+            this.hubConnection.invoke("SendMessage", mesag);
             console.log(mesag);
             this.message = '';
         },
-            appendMsgToChat(user, msg) {
-                const htmlMsg = '<p class="msg"> [' + user + '] ' + msg + '</p>';
+            appendMsgToChat(msg) {
+                const htmlMsg = '<p class="msg"> [' + msg.User + '] ' + msg.text + '</p>';
                 this.chat = htmlMsg + this.chat;
                 } // prototype of overloaded method of appending a message to the chat
         // appendMsgToChat(usr, image, msg) {
