@@ -25,8 +25,8 @@
 import { mapState, mapMutations } from "vuex";
 import Message from "@/components/Message";
 import ChatForm from "@/components/ChatForm";
-import chat from './WebSocket'
-const signalR = require('@microsoft/signalr');
+// import chat from './WebSocket'
+// const signalR = require('@microsoft/signalr');
 
 export default {
  components: {
@@ -38,23 +38,23 @@ export default {
      title: `Chat Room`
    };
  },
-     created(){
-        this.user = this.$cookies.get("UserName");
+    //  created(){
+    //     this.user = this.$cookies.get("UserName");
 
-        this.hubConnection = chat.createHub();
+    //     this.hubConnection = chat.createHub();
+        
+    //     this.hubConnection
+    //     .start()
+    //     .then(()=>console.log("connected to the hub"))
+    //     .catch(err => console.log(err));
 
-        this.hubConnection
-        .start()
-        .then(()=>console.log("connected to the hub"))
-        .catch(err => console.log(err));
-
-        this.hubConnection.on("messageReceived",(msg) =>{
-            this.appendMsgToChat(msg);
-        });
-            this.hubConnection.on("ReceiveNotification", msg => {
-                this.appendAlertToChat(msg);
-        });
-    },
+    //     this.hubConnection.on("messageReceived",(msg) =>{
+    //         this.appendMsgToChat(msg);
+    //     });
+    //         this.hubConnection.on("ReceiveNotification", msg => {
+    //             this.appendAlertToChat(msg);
+    //     });
+    // },
   methods: {
    ...mapMutations(["newMessage"]),
     appendMsgToChat(msg) {
