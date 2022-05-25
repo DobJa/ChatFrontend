@@ -45,6 +45,9 @@ export default {
  },
  methods: {
      ...mapMutations(["newMessage"]),
+         appendMsgToChat(msg) {
+    this.$store.commit("newMessage", msg)
+    },
    send() {
             let msgId = generator.next().value;
             const mesag = new Message(msgId,this.$cookies.get("UserName"),this.message);
