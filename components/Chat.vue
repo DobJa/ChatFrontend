@@ -18,10 +18,15 @@
  </div>
 </template>
 
+<script src="~/lib/signalr/signalr.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 <script>
 import { mapState, mapMutations } from "vuex";
 import Message from "@/components/Message";
 import ChatForm from "@/components/ChatForm";
+import chat from './WebSocket'
+const signalR = require('@microsoft/signalr');
 
 export default {
  components: {
@@ -33,8 +38,28 @@ export default {
      title: `Chat Room`
    };
  },
+     created(){
+        this.user = this.$cookies.get("UserName");
+
+        this.hubConnection = chat.createHub();
+
+        this.hubConnection
+        .start()
+        .then(()=>console.log("connected to the hub"))
+        .catch(err => console.log(err));
+
+        this.hubConnection.on("messageReceived",(msg) =>{
+            this.appendMsgToChat(msg);
+        });
+            this.hubConnection.on("ReceiveNotification", msg => {
+                this.appendAlertToChat(msg);
+        });
+    },
   methods: {
-   ...mapMutations(["newMessage"])
+   ...mapMutations(["newMessage"]),
+    appendMsgToChat(msg) {
+    this.$store.commit("newMessage", msg)
+    }
  },
  computed: {
    ...mapState(["user", "messages"])
