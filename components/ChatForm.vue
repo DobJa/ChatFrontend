@@ -26,8 +26,8 @@ export default {
    send() {
             let msgId = generator.next().value;
             const mesag = new Message(msgId,this.$cookies.get("UserName"),this.message);
-          //  this.hubConnection.invoke("SendMessage", mesag);
-            this.$store.commit("newMessage", mesag)
+            this.hubConnection.invoke("SendMessage", mesag);
+            //this.$store.commit("newMessage", mesag)
             console.log(mesag);
             // this.message = '';
    }
