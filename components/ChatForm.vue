@@ -1,5 +1,6 @@
 <template>
-        <b-form-input id="message"
+        <b-form-input 
+                      id="message"
                       type="text"
                       v-model="message"
                       required
@@ -22,7 +23,8 @@ const signalR = require('@microsoft/signalr');
 const generator = snowflakeGenerator(512);
 export default {
  data: () => ({
-     drawer: true
+     drawer: true,
+     message: ""
  }),
       created(){
           this.$cookies.set("typing", false)
@@ -57,6 +59,7 @@ export default {
             this.hubConnection.invoke("SendMessage", mesag);
             //this.$store.commit("newMessage", mesag)
             console.log(mesag);
+            this.message = "";
             
    },
    isTyping() {
