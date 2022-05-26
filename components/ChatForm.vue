@@ -46,6 +46,7 @@ export default {
  methods: {
      ...mapMutations(["newMessage"]),
          appendMsgToChat(msg) {
+         //  const mesag = new Message(msg.MessId,msg.User,msg.text, msg.timestamp);
     this.$store.commit("newMessage", msg)
     },
    send() {

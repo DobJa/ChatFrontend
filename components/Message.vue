@@ -7,7 +7,7 @@
          <span class="msg_ID">{{MessId}}</span>
          <span class="msg__date">{{ time }}</span> -->
        </div>
-       <p class="msg__text"> [{{User}}] {{ text }}</p>
+       <p class="msg__text"> [{{User}}] {{ text }} {{timestamp}}  {{MessID}}</p>
        <!-- <p class="msg__date">{{ timestamp }}</p>
        <p class="msg_ID">{{MessId}}</p>
        <p class="msg__name">{{ User }}</p> -->
