@@ -7,7 +7,7 @@
          <span class="msg_ID">{{MessId}}</span>
          <span class="msg__date">{{ time }}</span> -->
        </div>
-       <p class="msg__text"> [ {{user}} ] {{ text }}</p>
+       <p class="msg__text"> <b-button variant="outline-light" :disabled="isDisabled">Del</b-button> [ {{user}} ] {{ text }}</p> 
        <!-- <p class="msg__date">{{ timestamp }}</p>
        <p class="msg_ID">{{MessId}}</p>
        <p class="msg__name">{{ User }}</p> -->
@@ -24,6 +24,11 @@ export default {
    user: String,
    timestamp: Number,
    text: String
+ },
+ computed: {
+   isDisabled() {
+     return this.user !== this.$cookies.get("UserName");
+   }
  }
 };
 </script>

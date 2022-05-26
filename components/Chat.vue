@@ -5,6 +5,7 @@
      <ChatForm />
    </div>
 
+
    <div class="chat" ref="chat">
      <Message
        v-for="(misag) in messages.slice().reverse()"
