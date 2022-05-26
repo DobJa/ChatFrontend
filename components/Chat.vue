@@ -16,7 +16,7 @@
      />
    </div>
 
-   <div>{{messages.message.user}}</div>
+   <div>{{messages}}</div>
 
  </div>
 </template>
