@@ -16,8 +16,6 @@
      />
    </div>
 
-   <div>{{messages}}</div>
-
  </div>
 </template>
 
