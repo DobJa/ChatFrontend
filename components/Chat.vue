@@ -9,7 +9,7 @@
      <Message
        v-for="(misag) in messages.slice().reverse()"
        :key="misag.MessId"
-       :User="misag.User"
+       :Username="misag.User"
        :text="misag.text"
        :timestamp="misag.timestamp"
      />
