@@ -5,6 +5,13 @@
      <ChatForm />
    </div>
 
+  <div v-if="isTyping" class="d-flex align-items-center">
+    <strong>Someone is typing      </strong>
+    <b-spinner small label = "Small Spinner" type = "grow" variant = "info"></b-spinner>
+  </div>
+  <div v-else>
+    <strong>pls chat I'm lonely</strong>
+  </div>
 
    <div class="chat" ref="chat">
      <Message
@@ -16,6 +23,7 @@
        :timestamp="misag.timestamp"
      />
    </div>
+
 
  </div>
 </template>
@@ -45,7 +53,13 @@ export default {
     }
  },
  computed: {
-   ...mapState(["user", "messages"])
+   ...mapState(["user", "messages"]),
+   isTyping(){
+    // return this.$cookies.get("typing");
+    return false;
+
+
+   }
  },
  watch: {
    messages() {

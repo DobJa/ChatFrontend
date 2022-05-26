@@ -4,6 +4,7 @@
                       v-model="message"
                       required
                       @keyup.native.enter="send"
+                      @input ="isTyping"
                       placeholder="Type your message">
         </b-form-input>
 </template>
@@ -24,6 +25,7 @@ export default {
      drawer: true
  }),
       created(){
+          this.$cookies.set("typing", false)
         this.user = this.$cookies.get("UserName");
 
         this.hubConnection = chat.createHub();
@@ -55,7 +57,11 @@ export default {
             this.hubConnection.invoke("SendMessage", mesag);
             //this.$store.commit("newMessage", mesag)
             console.log(mesag);
-            // this.message = '';
+            
+   },
+   isTyping() {
+       this.$cookies.set("typing", true);
+      // alert("SAMSING CHANGED")
    }
  }
 };
