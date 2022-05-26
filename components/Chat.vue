@@ -8,14 +8,15 @@
    <div class="chat" ref="chat">
      <Message
        v-for="(misag) in messages.slice().reverse()"
-       :key="misag.MessId"
-       :User="misag.User"
+
+       :key="misag.messid"
+       :User="misag.user"
        :text="misag.text"
        :timestamp="misag.timestamp"
      />
    </div>
 
-   <div>{{messages}}</div>
+   <div>{{messages.message.user}}</div>
 
  </div>
 </template>
