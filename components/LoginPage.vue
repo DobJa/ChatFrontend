@@ -68,6 +68,12 @@ import url from 'vuelidate/lib/validators/url';
                 name: this.form.name
               })
         .then((result2) =>{
+          let result3 = axios.post("http://user.test/authentication", {
+            name: this.form.name,
+            alert(result3)
+          }
+
+          )
           this.$cookies.set("UserName", this.form.name);
           this.$router.push('/ChatView');
         })
