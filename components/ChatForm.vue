@@ -1,5 +1,7 @@
 <template>
-        <b-form-input 
+    <div>
+            <b-input-group class="mb-2">
+                <b-form-input 
                       id="message"
                       type="text"
                       v-model="message"
@@ -7,7 +9,21 @@
                       @keyup.native.enter="send"
                       @input ="isTyping"
                       placeholder="Type your message">
-        </b-form-input>
+                </b-form-input>
+
+                <b-form-file
+                ref="file-input"
+                     id="file"
+                     v-model="file1"
+                     :state="Boolean(file1)"
+                     @keyup.native.enter="send"
+                     placeholder="Choose a file or drop it here..."
+                     drop-placeholder="Drop file here..."
+                     accept="image/jpeg, image/png"
+                ></b-form-file>
+            </b-input-group>
+
+    </div>
 </template>
 
 <script src="~/lib/signalr/signalr.js"></script>
@@ -24,7 +40,8 @@ const generator = snowflakeGenerator(512);
 export default {
  data: () => ({
      drawer: true,
-     message: ""
+     message: "",
+     file: null,
  }),
       created(){
           this.$cookies.set("typing", false)
@@ -53,21 +70,45 @@ export default {
          //  const mesag = new Message(msg.MessId,msg.User,msg.text, msg.timestamp);
     this.$store.commit("newMessage", msg)
     },
+       getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+},
    send() {
-         if(this.message.length > 0){
+         if(this.message.length > 0 || this.file != null){
             let msgId = generator.next().value;
             const mesag = new Message(msgId,this.$cookies.get("UserName"),this.message);
             this.hubConnection.invoke("SendMessage", mesag);
             //this.$store.commit("newMessage", mesag)
+        // poopoo test blob  ok worky
+
+        var file = document.querySelector('input[type=file]').files[0];
+        if (file)
+        { 
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        const base64 = reader.result;
+        // have to send message here befoere base64 is cleared
+        console.log(base64);
+    }
+        }
+
+        //poopoo test blob end
             console.log(mesag);
             this.message = "";
+            this.$refs['file-input'].reset()
          }
             
    },
    isTyping() {
        this.$cookies.set("typing", true);
       // alert("SAMSING CHANGED")
-   }
+   },
  }
 };
 </script>

@@ -19,4 +19,15 @@ export const state = () => ({
       state.messages = [];
       state.users = [];
     },
+    MessusDeletus(state, id){
+      var index = state.messages.findIndex(function(item, i) {
+        return item.text === "<REDACTED>";
+      });
+
+      state.messages = [
+        ...state.messages.slice(0, index),
+        id,
+        ...state.messages.slice(index + 1)
+      ]
+    }
    }
