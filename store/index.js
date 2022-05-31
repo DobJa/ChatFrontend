@@ -20,14 +20,10 @@ export const state = () => ({
       state.users = [];
     },
     MessusDeletus(state, id){
-      var index = state.messages.findIndex(function(item, i) {
-        return item.text === "<REDACTED>";
+      const index = state.messages.findIndex(object => {
+        return object.mid === id;
       });
-
-      state.messages = [
-        ...state.messages.slice(0, index),
-        id,
-        ...state.messages.slice(index + 1)
-      ]
+      state.messages[index].text = "<this message has been deleted>";
+      state.messages[index].image = null;
     }
    }

@@ -65,7 +65,6 @@ import url from 'vuelidate/lib/validators/url';
               })
         .then((result3) =>{
           console.log(result3)
-          alert(result3)
         })
         .catch((err) =>{
           alert(err);
@@ -83,7 +82,6 @@ import url from 'vuelidate/lib/validators/url';
               })
         .then((result3) =>{
           console.log(result3)
-          alert(result3)
         })
         .catch((err) =>{
           alert(err);

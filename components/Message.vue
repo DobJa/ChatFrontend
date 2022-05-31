@@ -27,7 +27,8 @@ export default {
    user: String,
    timestamp: Number,
    text: String,
-   image: String
+   image: String,
+   mid: String
  },
  computed: {
    isDisabled() {
@@ -36,8 +37,8 @@ export default {
  },
  methods: {
    deletus(){
-     this.text = "<REDACTED>";
-     this.$store.commit("MessusDeletus", this.messid);
+     this.text = "<this message has been deleted>";
+     this.$store.commit("MessusDeletus", this.mid);
    }
  }
 };

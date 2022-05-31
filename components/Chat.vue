@@ -22,6 +22,8 @@
        :text="misag.text"
        :timestamp="misag.timestamp"
        :image="misag.image"
+        :messid="misag.messid"
+        :mid="misag.mid"
      />
      
    </div>
