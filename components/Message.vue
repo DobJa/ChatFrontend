@@ -8,7 +8,8 @@
          
          <span class="msg__date">{{ time }}</span> -->
        </div>
-       <p class="msg__text"> <b-button variant="outline-light" :disabled="isDisabled" @click="deletus">Del</b-button> [ {{user}} ] {{ text }}</p> 
+       <p class="msg__text"> <b-button variant="outline-light" :disabled="isDisabled" @click="deletus">Del</b-button> [ {{user}} ] {{ text }} </p>
+       <img v-if(image) v-bind:src="image" />
        <!-- <p class="msg__date">{{ timestamp }}</p>
        <p class="msg_ID">{{MessId}}</p>
        <p class="msg__name">{{ User }}</p> -->
@@ -25,7 +26,8 @@ export default {
    messid: String,
    user: String,
    timestamp: Number,
-   text: String
+   text: String,
+   image: String
  },
  computed: {
    isDisabled() {

@@ -81,8 +81,8 @@ export default {
    send() {
          if(this.message.length > 0 || this.file != null){
             let msgId = generator.next().value;
-            const mesag = new Message(msgId,this.$cookies.get("UserName"),this.message);
-            this.hubConnection.invoke("SendMessage", mesag);
+           // const mesag = new Message(msgId,this.$cookies.get("UserName"),this.message);
+          //  this.hubConnection.invoke("SendMessage", mesag);
             //this.$store.commit("newMessage", mesag)
         // poopoo test blob  ok worky
 
@@ -95,13 +95,23 @@ export default {
         const base64 = reader.result;
         // have to send message here befoere base64 is cleared
         console.log(base64);
+        const mesag = new Message(msgId,this.$cookies.get("UserName"),this.message, base64);
+        this.hubConnection.invoke("SendMessage", mesag);
+            this.message = "";
+            this.$refs['file-input'].reset()
     }
+        }
+        else{
+            const emptyImage = null;
+            const mesag = new Message(msgId,this.$cookies.get("UserName"),this.message, emptyImage);
+            this.hubConnection.invoke("SendMessage", mesag);
+            this.message = "";
+            this.$refs['file-input'].reset()
         }
 
         //poopoo test blob end
             console.log(mesag);
-            this.message = "";
-            this.$refs['file-input'].reset()
+ 
          }
             
    },

@@ -1,8 +1,9 @@
 class Message {
-    constructor(messid, user, text) {
+    constructor(messid, user, text, image) {
       this.messid = messid;
       this.user = user;
       this.text = text;
+      this.image = image;
       this.timestamp = Math.floor(new Date().getTime()/1000.0)
     }
    }

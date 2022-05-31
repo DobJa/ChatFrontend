@@ -21,7 +21,9 @@
        :user="misag.user"
        :text="misag.text"
        :timestamp="misag.timestamp"
+       :image="misag.image"
      />
+     
    </div>
 
 
