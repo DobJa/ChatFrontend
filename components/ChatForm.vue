@@ -79,14 +79,15 @@ export default {
   });
 },
    send() {
-         if(this.message.length > 0 || this.file != null){
+       var file = document.querySelector('input[type=file]').files[0];
+         if(this.message.length > 0 || file){
             let msgId = generator.next().value;
            // const mesag = new Message(msgId,this.$cookies.get("UserName"),this.message);
           //  this.hubConnection.invoke("SendMessage", mesag);
             //this.$store.commit("newMessage", mesag)
         // poopoo test blob  ok worky
 
-        var file = document.querySelector('input[type=file]').files[0];
+        
         if (file)
         { 
     const reader = new FileReader();
