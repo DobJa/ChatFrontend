@@ -51,7 +51,13 @@ export default {
   methods: {
    ...mapMutations(["newMessage"]),
     appendMsgToChat(msg) {
-    this.$store.commit("newMessage", msg)
+      if (messages.filter(m => m.messid === msg.messid).length === 0) {
+        this.$store.commit("newMessage", msg)
+      }
+      else{
+
+      }
+    
     }
  },
  computed: {
