@@ -21,6 +21,9 @@
 <script>
 import Message from '../utils/Message'
 import { mapState, mapMutations } from "vuex";
+import chat from './WebSocket'
+const signalR = require('@microsoft/signalr');
+
 export default {
  props: {
    messid: String,
@@ -30,6 +33,21 @@ export default {
    image: String,
    mid: String
  },
+       created(){
+          this.$cookies.set("typing", false)
+        this.user = this.$cookies.get("UserName");
+
+        this.hubConnection = chat.createHub();
+        
+        this.hubConnection
+        .start()
+        .then(()=>console.log("connected to the hub"))
+        .catch(err => console.log(err));
+
+        this.hubConnection.on("messagusDeletus",(index) =>{
+            this.$store.commit("MessusDeletus", index);
+        });
+    },
  computed: {
    isDisabled() {
      return this.user !== this.$cookies.get("UserName");
@@ -39,6 +57,8 @@ export default {
    deletus(){
      this.text = "<this message has been deleted>";
      this.$store.commit("MessusDeletus", this.mid);
+      this.hubConnection.invoke("DeleteMessage", this.mid);
+
    }
  }
 };
