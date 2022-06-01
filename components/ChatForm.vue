@@ -67,6 +67,7 @@ export default {
  methods: {
      ...mapMutations(["newMessage"]),
          appendMsgToChat(msg) {
+             console.log("message received:" + msg);
          //  const mesag = new Message(msg.MessId,msg.User,msg.text, msg.timestamp);
     this.$store.commit("newMessage", msg)
     },
@@ -97,7 +98,7 @@ export default {
         const base64 = reader.result;
         // have to send message here befoere base64 is cleared
         console.log(base64);
-        const mesag = new Message(msgId,this.$cookies.get("UserName"),this.message, base64, mid);
+        const mesag = new Message(mid,this.$cookies.get("UserName"),this.message, base64, mid);
         console.log(mesag);
         this.hubConnection.invoke("SendMessage", mesag);
             this.message = "";
@@ -106,7 +107,7 @@ export default {
         }
         else{
             const emptyImage = null;
-            const mesag = new Message(msgId,this.$cookies.get("UserName"),this.message, emptyImage, mid);
+            const mesag = new Message(mid,this.$cookies.get("UserName"),this.message, emptyImage, mid);
             console.log(mesag);
             this.hubConnection.invoke("SendMessage", mesag);
             this.message = "";
