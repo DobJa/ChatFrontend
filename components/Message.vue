@@ -47,6 +47,10 @@ export default {
         this.hubConnection.on("messagusDeletus",(index) =>{
             this.$store.commit("MessusDeletus", index);
         });
+
+                this.hubConnection.on("messageReceived",(msg) =>{
+            //consume useless message
+        });
     },
  computed: {
    isDisabled() {
@@ -57,7 +61,9 @@ export default {
    deletus(){
      this.text = "<this message has been deleted>";
      this.$store.commit("MessusDeletus", this.mid);
-      this.hubConnection.invoke("DeleteMessage", this.mid);
+     this.hubConnection.invoke("DeleteMessage", this.mid);
+   //  this.$store.commit("MessusDeletus", this.mid);
+      
 
    }
  }

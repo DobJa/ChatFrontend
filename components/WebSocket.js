@@ -4,7 +4,7 @@ export default {
     createHub() {
         return new HubConnectionBuilder()
             .withUrl("http://relay.test/chat")
-            .configureLogging(LogLevel.Trace)
+            .configureLogging(LogLevel.Information)
             .build();
     }
 }

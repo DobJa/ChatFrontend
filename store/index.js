@@ -25,5 +25,6 @@ export const state = () => ({
       });
       state.messages[index].text = "<this message has been deleted>";
       state.messages[index].image = null;
+
     }
    }
