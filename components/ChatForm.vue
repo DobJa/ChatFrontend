@@ -57,8 +57,8 @@ export default {
         this.hubConnection.on("messageReceived",(msg) =>{
             this.appendMsgToChat(msg);
         });
-            this.hubConnection.on("ReceiveNotification", msg => {
-                this.appendAlertToChat(msg);
+        this.hubConnection.on("messagusDeletus",(index) =>{
+            //consoom the message
         });
     },
   computed: {
@@ -67,7 +67,7 @@ export default {
  methods: {
      ...mapMutations(["newMessage"]),
          appendMsgToChat(msg) {
-             console.log("message received:" + msg);
+             alert(msg.user);
          //  const mesag = new Message(msg.MessId,msg.User,msg.text, msg.timestamp);
     this.$store.commit("newMessage", msg)
     },
