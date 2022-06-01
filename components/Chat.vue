@@ -39,6 +39,7 @@
 import { mapState, mapMutations } from "vuex";
 import Message from "@/components/Message";
 import ChatForm from "@/components/ChatForm";
+import axios from "axios";
 
 export default {
  components: {
@@ -52,6 +53,22 @@ export default {
  },
   methods: {
    ...mapMutations(["newMessage"]),
+     	updateOnlineStatus(e) {
+    	const { type } = e;
+      this.onLine = type === 'online';
+    },
+        handler: function handler(event) {
+        const url = "http://user.test/users" + "/" + this.$cookies.get("UserName");
+        let result = axios.delete(url, {
+          userName: this.$cookies.get("UserName")
+        })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) =>{
+          console.log(err)
+        });
+    }
  },
  computed: {
    ...mapState(["user", "messages"]),
@@ -63,13 +80,38 @@ export default {
    }
  },
  watch: {
-   messages() {
-     setTimeout(() => {
-       if (this.$refs.chat) {
-         this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight;
-       }
-     }, 0);
-   }
- }
+  	onLine(v) {
+    	if(v) 
+      {
+      }
+      else
+      {
+        const url = "http://user.test/users" + "/" + this.$cookies.get("UserName");
+        let result = axios.delete(url, {
+          userName: this.$cookies.get("UserName")
+        })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) =>{
+          console.log(err)
+        });
+        alert("you have lost connection, log again");
+        this.$router.push("/index");
+      }
+    }
+ },
+     mounted() {
+        window.addEventListener('online', this.updateOnlineStatus);
+        window.addEventListener('offline', this.updateOnlineStatus);
+    },
+    beforeDestroy() {
+        window.removeEventListener('online', this.updateOnlineStatus);
+        window.removeEventListener('offline', this.updateOnlineStatus);
+    },
+  created(){
+    window.addEventListener('beforeunload', this.handler);
+    document.addEventListener('beforeunload', this.handler);
+  }
 };
 </script>

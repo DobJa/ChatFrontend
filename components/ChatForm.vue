@@ -1,6 +1,9 @@
 <template>
     <div>
             <b-input-group class="mb-2">
+                
+                <b-input-group-prepend>{{this.$cookies.get("UserName")}}</b-input-group-prepend>
+
                 <b-form-input 
                       id="message"
                       type="text"

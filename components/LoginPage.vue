@@ -60,17 +60,7 @@ import url from 'vuelidate/lib/validators/url';
     let url = "http://user.test/users";
     let result = axios.get(url + "/" + this.form.name)
     .then((result) => {
-      let result3 = axios.post("http://user.test/authenticate", {
-                name: this.form.name
-              })
-        .then((result3) =>{
-          console.log(result3)
-        })
-        .catch((err) =>{
-          alert(err);
-        });
-    this.$cookies.set("UserName", this.form.name);
-    this.$router.push('/ChatView');
+      alert("Username taken, please choose another one");
     })
     .catch((err) =>{
               let result2 = axios.post(url, {
