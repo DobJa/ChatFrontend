@@ -52,15 +52,6 @@ export default {
  },
   methods: {
    ...mapMutations(["newMessage"]),
-    appendMsgToChat(msg) {
-      if (messages.filter(m => m.mid === msg.mid).length === 0) {
-        this.$store.commit("newMessage", msg)
-      }
-      else{
-
-      }
-    
-    }
  },
  computed: {
    ...mapState(["user", "messages"]),

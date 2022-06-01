@@ -18,3 +18,10 @@ export const state = () => ({
 
     }
    }
+   export const getters = {
+      IsUnique: (state) => (id) => { 
+      {
+        return state.messages.filter(m => m.mid === id).length;
+      }
+    }
+   }

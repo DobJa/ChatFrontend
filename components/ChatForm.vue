@@ -67,9 +67,13 @@ export default {
  methods: {
      ...mapMutations(["newMessage"]),
          appendMsgToChat(msg) {
-        //     alert(msg.user);
-          // const mesag = new Message(msg.mid,msg.user,msg.text, msg.image,msg.mid,msg.timestamp);
+if (this.$store.getters.IsUnique(msg.mid) == 0) {
     this.$store.commit("newMessage", msg)
+}
+else{
+    // drop non unique messages
+}
+
     },
        getBase64(file) {
   return new Promise((resolve, reject) => {
