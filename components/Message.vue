@@ -60,7 +60,6 @@ export default {
  methods: {
    deletus(){
      this.text = "<this message has been deleted>";
-     this.$store.commit("MessusDeletus", this.mid);
      this.hubConnection.invoke("DeleteMessage", this.mid);
    //  this.$store.commit("MessusDeletus", this.mid);
       
