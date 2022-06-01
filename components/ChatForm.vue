@@ -58,7 +58,7 @@ export default {
             this.appendMsgToChat(msg);
         });
         this.hubConnection.on("messagusDeletus",(index) =>{
-            //consoom the message
+            this.$store.commit("MessusDeletus", index);
         });
     },
   computed: {
@@ -67,8 +67,8 @@ export default {
  methods: {
      ...mapMutations(["newMessage"]),
          appendMsgToChat(msg) {
-             alert(msg.user);
-         //  const mesag = new Message(msg.MessId,msg.User,msg.text, msg.timestamp);
+        //     alert(msg.user);
+          // const mesag = new Message(msg.mid,msg.user,msg.text, msg.image,msg.mid,msg.timestamp);
     this.$store.commit("newMessage", msg)
     },
        getBase64(file) {

@@ -35,7 +35,7 @@ export default {
  },
        created(){
           this.$cookies.set("typing", false)
-        this.user = this.$cookies.get("UserName");
+      //  this.user = this.$cookies.get("UserName");
 
         this.hubConnection = chat.createHub();
         
@@ -45,7 +45,7 @@ export default {
         .catch(err => console.log(err));
 
         this.hubConnection.on("messagusDeletus",(index) =>{
-            this.$store.commit("MessusDeletus", index);
+            //consume useless message
         });
 
                 this.hubConnection.on("messageReceived",(msg) =>{
