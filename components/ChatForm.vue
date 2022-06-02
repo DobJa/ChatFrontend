@@ -26,7 +26,16 @@
                 ></b-form-file>
             </b-input-group>
 
+          <div v-if="Chatting" class="d-flex align-items-center">
+    <strong>Someone is typing      </strong>
+    <b-spinner small label = "Small Spinner" type = "grow" variant = "info"></b-spinner>
+  </div>
+  <div v-else>
+    <strong></strong>
+  </div>
+
     </div>
+    
 </template>
 
 <script src="~/lib/signalr/signalr.js"></script>
@@ -45,6 +54,7 @@ export default {
      drawer: true,
      message: "",
      file: null,
+     Chatting: false,
  }),
       created(){
           this.$cookies.set("typing", false)
@@ -63,12 +73,30 @@ export default {
         this.hubConnection.on("messagusDeletus",(index) =>{
             this.$store.commit("MessusDeletus", index);
         });
+        this.hubConnection.on("SomeoneTyping",() =>{
+            if (this.Chatting ==  false)
+            {
+            this.Chatting = true;
+            setTimeout(() => {
+                this.Chatting = false;
+            }, 350);
+        }
+        else
+        {
+                        setTimeout(() => {
+                this.Chatting = false;
+            }, 350);
+        }
+        });
     },
   computed: {
    ...mapState(["user"])
  },
  methods: {
      ...mapMutations(["newMessage"]),
+     isTyping(){
+        this.hubConnection.invoke("Typing");
+     },
          appendMsgToChat(msg) {
 if (this.$store.getters.IsUnique(msg.mid) == 0) {
     this.$store.commit("newMessage", msg)
@@ -76,7 +104,6 @@ if (this.$store.getters.IsUnique(msg.mid) == 0) {
 else{
     // drop non unique messages
 }
-
     },
        getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -126,10 +153,6 @@ else{
  
          }
             
-   },
-   isTyping() {
-       this.$cookies.set("typing", true);
-      // alert("SAMSING CHANGED")
    },
  }
 };

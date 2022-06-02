@@ -5,13 +5,6 @@
      <ChatForm />
    </div>
 
-  <div v-if="isTyping" class="d-flex align-items-center">
-    <strong>Someone is typing      </strong>
-    <b-spinner small label = "Small Spinner" type = "grow" variant = "info"></b-spinner>
-  </div>
-  <div v-else>
-    <strong>pls chat I'm lonely</strong>
-  </div>
 
    <div class="chat" ref="chat">
      <Message
@@ -71,13 +64,7 @@ export default {
     }
  },
  computed: {
-   ...mapState(["user", "messages"]),
-   isTyping(){
-    // return this.$cookies.get("typing");
-    return false;
-
-
-   }
+   ...mapState(["user", "messages"])
  },
  watch: {
   	onLine(v) {

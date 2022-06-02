@@ -51,6 +51,10 @@ export default {
                 this.hubConnection.on("messageReceived",(msg) =>{
             //consume useless message
         });
+
+                this.hubConnection.on("SomeoneTyping",() =>{
+            //consume useless message
+        });
     },
  computed: {
    isDisabled() {
