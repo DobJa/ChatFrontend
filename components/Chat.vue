@@ -99,6 +99,16 @@ export default {
   created(){
     window.addEventListener('beforeunload', this.handler);
     document.addEventListener('beforeunload', this.handler);
+
+    let url = "http://chat.test/messages";
+    let result = axios.get(url)
+    .then((result) => {
+      let data = result.data;
+      for(let i = 0; i < data.length; i++)
+      {
+        this.$store.commit("newMessage", data[i]);
+      }
+    })
   }
 };
 </script>
