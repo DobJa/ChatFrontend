@@ -79,13 +79,10 @@ export default {
             this.Chatting = true;
             setTimeout(() => {
                 this.Chatting = false;
-            }, 350);
+            }, 700);
         }
         else
         {
-                        setTimeout(() => {
-                this.Chatting = false;
-            }, 350);
         }
         });
     },
