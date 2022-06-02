@@ -90,7 +90,9 @@ export default {
         this.hubConnection.on("messagusDeletus",(index) =>{
             this.$store.commit("MessusDeletus", index);
         });
-        this.hubConnection.on("SomeoneTyping",() =>{
+        this.hubConnection.on("SomeoneTyping",(name) =>{
+            if (name != this.$cookies.get("UserName"))
+            {
             if (this.Chatting ==  false)
             {
             this.Chatting = true;
@@ -101,6 +103,10 @@ export default {
         else
         {
         }
+            }
+            else{
+
+            }
         
         });
     },
@@ -110,7 +116,7 @@ export default {
  methods: {
      ...mapMutations(["newMessage"]),
      isTyping(){
-        this.hubConnection.invoke("Typing");
+        this.hubConnection.invoke("Typing", this.$cookies.get("UserName"));
      },
          appendMsgToChat(msg) {
 if (this.$store.getters.IsUnique(msg.mid) == 0) {
