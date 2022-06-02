@@ -84,7 +84,7 @@ export default {
           console.log(err)
         });
         alert("you have lost connection, log again");
-        this.$router.push("/index");
+        this.$router.push("");
       }
     }
  },

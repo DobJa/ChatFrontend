@@ -57,8 +57,25 @@ export default {
      Chatting: false,
  }),
       created(){
+
           this.$cookies.set("typing", false)
         this.user = this.$cookies.get("UserName");
+
+        if(this.user == "")
+        {
+            this.$router.push("");
+        }
+        else
+        {
+        }
+
+        if(this.$cookies.get("control") == 1)
+        {
+            this.$cookies.set("control", 0);
+        }
+        else{
+            this.$router.push("");
+        }
 
         this.hubConnection = chat.createHub();
         
@@ -84,6 +101,7 @@ export default {
         else
         {
         }
+        
         });
     },
   computed: {

@@ -77,10 +77,12 @@ import url from 'vuelidate/lib/validators/url';
           alert(err);
         });
           this.$cookies.set("UserName", this.form.name);
+          this.$cookies.set("control", 1);
           this.$router.push('/ChatView');
         })
         .catch((err) =>{
           this.$cookies.set("UserName", this.form.name);
+          this.$cookies.set("control", 1);
           this.$router.push('/ChatView');
           alert(err);
         })
