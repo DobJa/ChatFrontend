@@ -77,7 +77,7 @@ export default {
             this.$router.push("");
         }
 
-        this.hubConnection = chat.createHub();
+        this.hubConnection = chat.createHub(this.$config.relayURL);
         
         this.hubConnection
         .start()

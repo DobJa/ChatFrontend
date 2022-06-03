@@ -57,7 +57,7 @@ import url from 'vuelidate/lib/validators/url';
       return $dirty ? !$error : null;
   }, // TU W DÓŁ XD
   LogIn(pass){
-    let url = "http://user.test/users";
+    let url = this.$config.userURL + "/users";
     let result = axios.get(url + "/" + this.form.name)
     .then((result) => {
       alert("Username taken, please choose another one");
@@ -67,7 +67,8 @@ import url from 'vuelidate/lib/validators/url';
                 name: this.form.name
               })
         .then((result2) =>{
-          let result3 = axios.post("http://user.test/authenticate", {
+          let urlauth = this.$config.userURL + "/authenticate";
+          let result3 = axios.post(urlauth, {
                 name: this.form.name
               })
         .then((result3) =>{

@@ -51,7 +51,7 @@ export default {
       this.onLine = type === 'online';
     },
         handler: function handler(event) {
-        const url = "http://user.test/users" + "/" + this.$cookies.get("UserName");
+        const url = this.$config.userURL + "/users" + "/" + this.$cookies.get("UserName");
         let result = axios.delete(url, {
           userName: this.$cookies.get("UserName")
         })
@@ -73,7 +73,7 @@ export default {
       }
       else
       {
-        const url = "http://user.test/users" + "/" + this.$cookies.get("UserName");
+        const url = this.$config.userURL + "/users" + "/" + this.$cookies.get("UserName");
         let result = axios.delete(url, {
           userName: this.$cookies.get("UserName")
         })
@@ -100,7 +100,7 @@ export default {
     window.addEventListener('beforeunload', this.handler);
     document.addEventListener('beforeunload', this.handler);
 
-    let url = "http://chat.test/messages";
+    let url = this.$config.chatURL + "/messages";
     let result = axios.get(url)
     .then((result) => {
       let data = result.data;

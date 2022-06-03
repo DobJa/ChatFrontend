@@ -45,6 +45,12 @@ export default {
     baseURL: '/',
   },
 
+  publicRuntimeConfig: {
+    userURL: process.env.HPDS_COMMON_USER_URL,
+    chatURL: process.env.HPDS_COMMON_CHAT_URL,
+    relayURL: process.env.HPDS_COMMON_RELAY_URL
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }

@@ -37,7 +37,7 @@ export default {
           this.$cookies.set("typing", false)
       //  this.user = this.$cookies.get("UserName");
 
-        this.hubConnection = chat.createHub();
+        this.hubConnection = chat.createHub(this.$config.relayURL);
         
         this.hubConnection
         .start()

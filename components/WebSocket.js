@@ -1,9 +1,9 @@
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr'
 
 export default {
-    createHub() {
+    createHub(relayURL) {
         return new HubConnectionBuilder()
-            .withUrl("http://relay.test/chat")
+            .withUrl(relayURL + "/chat")
             .configureLogging(LogLevel.Information)
             .build();
     }
